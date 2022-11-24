@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+}
+
+#board {
+  display: grid;
+  width: 30%;
+  margin: 0 auto;
+  grid-template-columns: repeat(10, minmax(40px, 40px));
+  grid-template-rows: repeat(10, minmax(40px, 40px));
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+
+.tile {
+  height: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
