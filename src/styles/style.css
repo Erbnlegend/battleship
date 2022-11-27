@@ -1,19 +1,122 @@
 body {
   margin: 0;
 }
+#title {
+  font-size: 3em;
+}
+.container {
+  position: relative;
+  display: flex;
+}
 
 #board {
   display: grid;
-  width: 30%;
-  margin: 0 auto;
-  grid-template-columns: repeat(10, minmax(40px, 40px));
-  grid-template-rows: repeat(10, minmax(40px, 40px));
+  position: relative;
+  grid-template-columns: repeat(10, minmax(60px, 60px));
+  grid-template-rows: repeat(10, minmax(60px, 60px));
   justify-content: center;
   align-items: center;
-  gap: 0;
+  margin: 25px;
+  overflow: visible;
 }
 
 .tile {
-  height: 40px;
+  height: 60px;
+  position: relative;
   border: 1px solid rgba(0, 0, 0, 0.4);
+}
+.tile img {
+  position: relative;
+}
+
+/* Tile Ship Placement Icons */
+.up, .down, .left, .right {
+  color: rgb(0, 128, 0);
+}
+.up:hover, .down:hover, .left:hover, .right:hover {
+  scale: 1.5;
+}
+.up {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: -5px;
+}
+.down {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: -5px;
+}
+.left {
+  position: absolute;
+  height: 100%;
+  align-items: center;
+  left: -5px;
+}
+.right {
+  position: absolute;
+  height: 100%;
+  align-items: center;
+  right: -5px;
+
+}
+
+.carrier {
+  width: 300px;
+  top: 10%;
+}
+
+.battleship {
+  width: 240px;
+  top: 25%;
+}
+
+.destroyer {
+  width: 180px;
+  top: 35%;
+}
+
+.warship {
+  width: 120px;
+  top: 40%;
+}
+
+.patrol {
+  width: 120px;
+  top: 40%;
+}
+
+/* Ship Styles */
+#ships {
+  display: flex;
+  flex-direction: column;
+  margin: 25px;
+}
+#Carrier {
+  background-image: url(../assets/aircraftcarrier.svg);
+}
+
+#Battleship {
+  background-image: url(../assets/battleship.svg);
+}
+
+#Destroyer {
+  background-image: url(../assets/destroyer.svg);
+}
+
+#Warship {
+  background-image: url(../assets/warship.svg);
+}
+
+#Patrol {
+  background-image: url(../assets/patrol.svg);
+}
+#Carrier, #Battleship, #Destroyer, #Warship, #Patrol {
+  background-color: #ffffff;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  border: none;
+  width: 150px;
+  height: 62px;
 }

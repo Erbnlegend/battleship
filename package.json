@@ -1,5 +1,10 @@
 {
   "name": "battleship",
+  "jest": {
+    "testPathIgnorePatterns": [
+      "./src/dom.js"
+    ]
+  },
   "version": "1.0.0",
   "description": "Defeat your enemies at sea!!",
   "main": "main.js",
@@ -36,5 +41,8 @@
     "webpack-cli": "^5.0.0",
     "webpack-dev-middleware": "^6.0.0",
     "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "lucide": "^0.102.0"
   }
 }

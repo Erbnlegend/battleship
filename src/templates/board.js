@@ -2,14 +2,15 @@ import { DOMElements } from '../dom'
 
 function boardTemplate () {
   initializeBoardNumber()
-  function initializeBoardNumber (boardNumber = 1, boardX = 1, boardY = 1) {
-    if (boardNumber <= 100) {
+  function initializeBoardNumber (boardNumber = 0, boardX = 0, boardY = 0) {
+    if (boardNumber <= 99) {
       const createTile = document.createElement('div')
-      createTile.setAttribute('id', `t${boardNumber}`)
+      createTile.setAttribute('id', `${boardNumber}`)
+      createTile.setAttribute('data-location', `${boardNumber}`)
       createTile.setAttribute('class', 'tile')
-
-      if (boardX === 11) {
-        boardX = 1
+      // Make x-y restart XY Coords
+      if (boardX === 10) {
+        boardX = 0
         boardY++
       }
 
