@@ -21,54 +21,79 @@ const player2 = {
     console.log(`${coords} attacked`)
   },
   deploy: function () {
-    for (const item in this.Ships) {
-      console.log(`${this.Ships[item].name}`, this.Ships[item].moves)
+    const coordsArray = []
+    for (const item in player2.Ships) {
+      const shipName = player2.Ships[item].name[0].toLowerCase() + player2.Ships[item].name.slice(1)
+      // Store on ship for placement
+      let randomX = Math.floor(Math.random() * 10)
+      let randomY = Math.floor(Math.random() * 10)
+      const check = `x: ${randomX}, y: ${randomY}`
+      if (coordsArray.includes(check)) {
+        randomX = Math.floor(Math.random() * 10)
+        randomY = Math.floor(Math.random() * 10)
+      }
+      coordsArray.push(check)
+      player2.Ships[item].x = randomX
+      player2.Ships[item].y = randomY
+
+      checkDeployment(shipName)
     }
-    for (const item in this.Ships) {
-      const element = null
-      const randomX = Math.floor(Math.random() * 10)
-      const randomY = Math.floor(Math.random() * 10)
-      const coords = { x: randomX, y: randomY }
-      const name = this.Ships[item].name
-      const shipName = name[0].toLowerCase() + name.slice(1)
-      GameBoard.determineShipOrientation(shipName, coords, element, player2)
+    function checkDeployment (shipName) {
+      console.log(`${player2.Ships[shipName].name}`, player2.Ships[shipName].moves)
+      if (!player2.Ships[shipName].moves.forwards.allowed && !player2.Ships[shipName].moves.backwards.allowed && !player2.Ships[shipName].moves.up.allowed && !player2.Ships[shipName].moves.down.allowed) {
+        player2.reset(shipName)
+        console.log('reset')
 
-      recheckDeploymentOptions(this)
-      function recheckDeploymentOptions (player) {
-        // Check if up is allowed
-        if (player.Ships[shipName].moves.up.allowed) {
-          const direction = player.Ships[shipName].moves.up
-
-          GameBoard.deployShip(direction, shipName, player, coords)
-          GameBoard.determineShipOrientation(shipName, coords, element, player2)
-          // check if forwards is allowed
-        } else if (player.Ships[shipName].moves.forwards.allowed) {
-          const direction = player.Ships[shipName].moves.forwards
-
-          GameBoard.deployShip(direction, shipName, player, coords)
-
-          GameBoard.determineShipOrientation(shipName, coords, element, player2)
-          // Checks if backwards is allowed
-        } else if (player.Ships[shipName].moves.backwards.allowed) {
-          const direction = player.Ships[shipName].moves.backwards
-
-          GameBoard.deployShip(direction, shipName, player, coords)
-
-          GameBoard.determineShipOrientation(shipName, coords, element, player2)
-          // Checks is down is allowed
-        } else if (player.Ships[shipName].moves.down.allowed) {
-          const direction = player.Ships[shipName].moves.down
-
-          GameBoard.deployShip(direction, shipName, player, coords)
-
-          GameBoard.determineShipOrientation(shipName, coords, element, player2)
+        let randomX = Math.floor(Math.random() * 10)
+        let randomY = Math.floor(Math.random() * 10)
+        const check = `x: ${randomX}, y: ${randomY}`
+        if (coordsArray.includes(check)) {
+          randomX = Math.floor(Math.random() * 10)
+          randomY = Math.floor(Math.random() * 10)
         }
+        coordsArray.push(check)
+        player2.Ships[shipName].x = randomX
+        player2.Ships[shipName].y = randomY
+      } else if (player2.Ships[shipName].moves.up.allowed) {
+        const direction = player2.Ships[shipName].moves.up
+        const coords = { x: player2.Ships[shipName].x, y: player2.Ships[shipName].y }
+        console.log(coords)
+        const element = null
+
+        GameBoard.determineShipOrientation(shipName, coords, element, player2)
+        GameBoard.deployShip(direction, shipName, player2, coords)
+
+        // check if backwards is allowed
+      } else if (player2.Ships[shipName].moves.backwards.allowed) {
+        const direction = player2.Ships[shipName].moves.backwards
+        const coords = { x: player2.Ships[shipName].x, y: player2.Ships[shipName].y }
+        console.log(coords)
+        const element = null
+
+        GameBoard.determineShipOrientation(shipName, coords, element, player2)
+        GameBoard.deployShip(direction, shipName, player2, coords)
+
+        // Checks if down is allowed
+      } else if (player2.Ships[shipName].moves.down.allowed) {
+        const direction = player2.Ships[shipName].moves.down
+        const coords = { x: player2.Ships[shipName].x, y: player2.Ships[shipName].y }
+        console.log(coords)
+        const element = null
+
+        GameBoard.determineShipOrientation(shipName, coords, element, player2)
+        GameBoard.deployShip(direction, shipName, player2, coords)
+        // Checks is forwards is allowed
+      } else if (player2.Ships[shipName].moves.forwards.allowed) {
+        const direction = player2.Ships[shipName].moves.forwards
+        const coords = { x: player2.Ships[shipName].x, y: player2.Ships[shipName].y }
+        console.log(coords)
+        const element = null
+
+        GameBoard.determineShipOrientation(shipName, coords, element, player2)
+        GameBoard.deployShip(direction, shipName, player2, coords)
       }
     }
-    for (const item in this.Ships) {
-      console.log(`${this.Ships[item].name}`, this.Ships[item].condition)
-    }
-    console.log(GameBoard[`${this.name}Grid`])
+    console.log(`${this.name}`, GameBoard[`${this.name}Grid`])
   },
   reset: function (ship) {
     this.Ships[ship].moves.forwards.allowed = true

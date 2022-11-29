@@ -83,6 +83,7 @@ const GameBoard = {
     getShipOrientationOptions(ship, coords, element, player)
   },
   deployShip: function (direction, ship, player, coords) {
+    console.log(coords)
     player.Ships[ship].condition = 'deployed'
     for (const item in player.Ships) {
       if (player.Ships[item].condition === 'waiting') {
@@ -96,7 +97,7 @@ const GameBoard = {
         if (n >= shipLength) {
           return
         }
-        GameBoard[`${player.name}Grid`][coords.y][coords.x + n] = player1.Ships[ship]
+        GameBoard[`${player.name}Grid`][coords.y][coords.x + n] = player.Ships[ship]
         fillGrid(n + 1)
       }
     }
@@ -106,7 +107,7 @@ const GameBoard = {
         if (n >= shipLength) {
           return
         }
-        GameBoard[`${player.name}Grid`][coords.y][coords.x - n] = player1.Ships[ship]
+        GameBoard[`${player.name}Grid`][coords.y][coords.x - n] = player.Ships[ship]
         fillGrid(n + 1)
       }
     }
@@ -116,7 +117,7 @@ const GameBoard = {
         if (n >= shipLength) {
           return
         }
-        GameBoard[`${player.name}Grid`][coords.y + n][coords.x] = player1.Ships[ship]
+        GameBoard[`${player.name}Grid`][coords.y + n][coords.x] = player.Ships[ship]
         fillGrid(n + 1)
       }
     }
@@ -126,7 +127,7 @@ const GameBoard = {
         if (n >= shipLength) {
           return
         }
-        GameBoard[`${player.name}Grid`][coords.y - n][coords.x] = player1.Ships[ship]
+        GameBoard[`${player.name}Grid`][coords.y - n][coords.x] = player.Ships[ship]
         fillGrid(n + 1)
       }
     }

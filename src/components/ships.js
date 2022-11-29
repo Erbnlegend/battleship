@@ -5,7 +5,6 @@ const Ships = {
     length: 5,
     hitPoints: 5,
     sunk: false,
-    // Test player 2
     condition: '',
     moves: {
       forwards: { text: 'forwards', allowed: true, deg: 0, origin: 'center left' },
@@ -13,6 +12,8 @@ const Ships = {
       up: { text: 'up', allowed: true, deg: -90, origin: '30px' },
       down: { text: 'down', allowed: true, deg: 90, origin: '30px' }
     },
+    x: '',
+    y: '',
     hit: function () {
       if (this.hitPoints === 0) {
         return
@@ -32,7 +33,6 @@ const Ships = {
     length: 4,
     hitPoints: 4,
     sunk: false,
-    // Test player 2
     condition: '',
     moves: {
       forwards: { text: 'forwards', allowed: true, deg: 0, origin: 'center left' },
@@ -40,6 +40,8 @@ const Ships = {
       up: { text: 'up', allowed: true, deg: -90, origin: '30px' },
       down: { text: 'down', allowed: true, deg: 90, origin: '30px' }
     },
+    x: '',
+    y: '',
     hit: function () {
       if (this.hitPoints === 0) {
         return
@@ -59,7 +61,6 @@ const Ships = {
     length: 3,
     hitPoints: 3,
     sunk: false,
-    // Test player 2
     condition: '',
     moves: {
       forwards: { text: 'forwards', allowed: true, deg: 0, origin: 'center left' },
@@ -67,6 +68,8 @@ const Ships = {
       up: { text: 'up', allowed: true, deg: -90, origin: '30px' },
       down: { text: 'down', allowed: true, deg: 90, origin: '30px' }
     },
+    x: '',
+    y: '',
     hit: function () {
       if (this.hitPoints === 0) {
         return
@@ -86,7 +89,6 @@ const Ships = {
     length: 3,
     hitPoints: 3,
     sunk: false,
-    // Test player 2
     condition: '',
     moves: {
       forwards: { text: 'forwards', allowed: true, deg: 0, origin: 'center left' },
@@ -94,6 +96,8 @@ const Ships = {
       up: { text: 'up', allowed: true, deg: -90, origin: '30px' },
       down: { text: 'down', allowed: true, deg: 90, origin: '30px' }
     },
+    x: '',
+    y: '',
     hit: function () {
       if (this.hitPoints === 0) {
         return
@@ -113,7 +117,6 @@ const Ships = {
     length: 2,
     hitPoints: 2,
     sunk: false,
-    // Test player 2
     condition: '',
     moves: {
       forwards: { text: 'forwards', allowed: true, deg: 0, origin: 'center left' },
@@ -121,6 +124,8 @@ const Ships = {
       up: { text: 'up', allowed: true, deg: -90, origin: '30px' },
       down: { text: 'down', allowed: true, deg: 90, origin: '30px' }
     },
+    x: '',
+    y: '',
     hit: function () {
       if (this.hitPoints === 0) {
         return

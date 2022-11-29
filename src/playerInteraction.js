@@ -69,7 +69,7 @@ function chooseCoords (shipElement, ship) {
       storeElements.push(element.id)
 
       if (storeElements.length > 1) {
-        if (player1.Ships[ship].condition === 'deployed') {
+        if (player1.Ships[ship].condition === 'placed') {
           return
         }
         clearPreviousSelectedElement()
