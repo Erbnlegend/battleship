@@ -1,4 +1,4 @@
-import { DOMElements } from '../dom'
+import { DOMElements } from '../playerInteraction'
 
 function boardTemplate () {
   initializeBoardNumber()
@@ -21,4 +21,25 @@ function boardTemplate () {
   }
 }
 
-export { boardTemplate }
+function attackTemplate () {
+  initializeBoardNumber()
+  function initializeBoardNumber (boardNumber = 0, boardX = 0, boardY = 0) {
+    if (boardNumber <= 99) {
+      const createTile = document.createElement('div')
+      createTile.setAttribute('id', `attack${boardNumber}`)
+      createTile.setAttribute('data-location', `${boardNumber}`)
+      createTile.setAttribute('class', 'attackTile')
+      // Make x-y restart XY Coords
+      if (boardX === 10) {
+        boardX = 0
+        boardY++
+      }
+
+      createTile.setAttribute('data-coords', `{"x": ${boardX}, "y": ${boardY}}`)
+      DOMElements.attackBoard.append(createTile)
+      initializeBoardNumber(boardNumber + 1, boardX + 1, boardY)
+    }
+  }
+}
+
+export { boardTemplate, attackTemplate }

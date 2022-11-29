@@ -1,4 +1,4 @@
-import { DOMElements } from '../dom'
+import { DOMElements } from '../playerInteraction'
 import { player1 } from '../components/players'
 
 function shipTemplate () {

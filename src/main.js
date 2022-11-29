@@ -2,8 +2,8 @@ import './index.html'
 import './styles/normalize.css'
 import './styles/style.css'
 import { shipTemplate } from './templates/shipsTemplate'
-import { boardTemplate } from './templates/board'
-import { selectShip } from './dom'
+import { attackTemplate, boardTemplate } from './templates/board'
+import { selectShip } from './playerInteraction'
 
 import './assets/aircraftcarrierBig.svg'
 import './assets/battleshipBig.svg'
@@ -22,3 +22,5 @@ boardTemplate()
 shipTemplate()
 // Allows User to select a ship to place
 selectShip()
+// Attack and computer board
+attackTemplate()

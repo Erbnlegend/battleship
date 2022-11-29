@@ -5,7 +5,26 @@ const Ships = {
     length: 5,
     hitPoints: 5,
     sunk: false,
-    condition: ''
+    // Test player 2
+    condition: '',
+    moves: {
+      forwards: { text: 'forwards', allowed: true, deg: 0, origin: 'center left' },
+      backwards: { text: 'backwards', allowed: true, deg: -180, origin: '30px' },
+      up: { text: 'up', allowed: true, deg: -90, origin: '30px' },
+      down: { text: 'down', allowed: true, deg: 90, origin: '30px' }
+    },
+    hit: function () {
+      if (this.hitPoints === 0) {
+        return
+      }
+      if (this.hitPoints === 1) {
+        this.sunkShip()
+      }
+      this.hitPoints--
+    },
+    sunkShip: function () {
+      this.sunk = true
+    }
   },
   battleship: {
     name: 'Battleship',
@@ -13,7 +32,26 @@ const Ships = {
     length: 4,
     hitPoints: 4,
     sunk: false,
-    condition: ''
+    // Test player 2
+    condition: '',
+    moves: {
+      forwards: { text: 'forwards', allowed: true, deg: 0, origin: 'center left' },
+      backwards: { text: 'backwards', allowed: true, deg: -180, origin: '30px' },
+      up: { text: 'up', allowed: true, deg: -90, origin: '30px' },
+      down: { text: 'down', allowed: true, deg: 90, origin: '30px' }
+    },
+    hit: function () {
+      if (this.hitPoints === 0) {
+        return
+      }
+      if (this.hitPoints === 1) {
+        this.sunkShip()
+      }
+      this.hitPoints--
+    },
+    sunkShip: function () {
+      this.sunk = true
+    }
   },
   destroyer: {
     name: 'Destroyer',
@@ -21,7 +59,26 @@ const Ships = {
     length: 3,
     hitPoints: 3,
     sunk: false,
-    condition: ''
+    // Test player 2
+    condition: '',
+    moves: {
+      forwards: { text: 'forwards', allowed: true, deg: 0, origin: 'center left' },
+      backwards: { text: 'backwards', allowed: true, deg: -180, origin: '30px' },
+      up: { text: 'up', allowed: true, deg: -90, origin: '30px' },
+      down: { text: 'down', allowed: true, deg: 90, origin: '30px' }
+    },
+    hit: function () {
+      if (this.hitPoints === 0) {
+        return
+      }
+      if (this.hitPoints === 1) {
+        this.sunkShip()
+      }
+      this.hitPoints--
+    },
+    sunkShip: function () {
+      this.sunk = true
+    }
   },
   warship: {
     name: 'Warship',
@@ -29,7 +86,26 @@ const Ships = {
     length: 3,
     hitPoints: 3,
     sunk: false,
-    condition: ''
+    // Test player 2
+    condition: '',
+    moves: {
+      forwards: { text: 'forwards', allowed: true, deg: 0, origin: 'center left' },
+      backwards: { text: 'backwards', allowed: true, deg: -180, origin: '30px' },
+      up: { text: 'up', allowed: true, deg: -90, origin: '30px' },
+      down: { text: 'down', allowed: true, deg: 90, origin: '30px' }
+    },
+    hit: function () {
+      if (this.hitPoints === 0) {
+        return
+      }
+      if (this.hitPoints === 1) {
+        this.sunkShip()
+      }
+      this.hitPoints--
+    },
+    sunkShip: function () {
+      this.sunk = true
+    }
   },
   patrol: {
     name: 'Patrol',
@@ -37,20 +113,28 @@ const Ships = {
     length: 2,
     hitPoints: 2,
     sunk: false,
-    condition: ''
-  },
-  hit: function (name) {
-    if (this[name].hitPoints === 0) {
-      return
+    // Test player 2
+    condition: '',
+    moves: {
+      forwards: { text: 'forwards', allowed: true, deg: 0, origin: 'center left' },
+      backwards: { text: 'backwards', allowed: true, deg: -180, origin: '30px' },
+      up: { text: 'up', allowed: true, deg: -90, origin: '30px' },
+      down: { text: 'down', allowed: true, deg: 90, origin: '30px' }
+    },
+    hit: function () {
+      if (this.hitPoints === 0) {
+        return
+      }
+      if (this.hitPoints === 1) {
+        this.sunkShip()
+      }
+      this.hitPoints--
+    },
+    sunkShip: function () {
+      this.sunk = true
     }
-    if (this[name].hitPoints === 1) {
-      this.sunkShip(name)
-    }
-    this[name].hitPoints--
-  },
-  sunkShip: function (name) {
-    this[name].sunk = true
   }
+
 }
 
 export { Ships }
