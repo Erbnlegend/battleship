@@ -1,6 +1,8 @@
 import { player1, player2 } from './players'
-import { Ships } from './ships'
+import { ShipsFactory } from './ships'
 import { getShipOrientationOptions } from '../playerInteraction'
+
+const ShipsBlueprint = ShipsFactory()
 
 const GameBoard = {
   player1Grid: [
@@ -31,13 +33,13 @@ const GameBoard = {
   determineShipOrientation: function (ship, coords, element, player) {
     const locationX = coords.x
     const locationY = coords.y
-    GameBoard.testBorderOverRun(ship, locationX, player.Ships[ship].moves.forwards, player.Ships[ship].moves.backwards)
-    GameBoard.testBorderOverRun(ship, locationY, player.Ships[ship].moves.down, player.Ships[ship].moves.up)
-    GameBoard.testFillGrid(ship, coords, element, player)
+    this.testBorderOverRun(ship, locationX, player.Ships[ship].moves.forwards, player.Ships[ship].moves.backwards)
+    this.testBorderOverRun(ship, locationY, player.Ships[ship].moves.down, player.Ships[ship].moves.up)
+    this.testFillGrid(ship, coords, element, player)
   },
   testBorderOverRun: function (ship, location, direction1, direction2) {
     // Need check on if ship is already in as location on grid
-    const shipLength = Ships[ship].length
+    const shipLength = ShipsBlueprint[ship].length
     const sum = location + shipLength
     const diff = location - shipLength
     if (sum > 10) {
@@ -48,7 +50,7 @@ const GameBoard = {
     }
   },
   testFillGrid: function (ship, coords, element, player) {
-    const shipLength = Ships[ship].length
+    const shipLength = ShipsBlueprint[ship].length
     test()
     function test (n = 0) {
       if (n >= shipLength) {
@@ -90,7 +92,7 @@ const GameBoard = {
         player.Ships[item].condition = ''
       }
     }
-    const shipLength = Ships[ship].length
+    const shipLength = ShipsBlueprint[ship].length
     if (direction.text === 'forwards') {
       fillGrid()
       function fillGrid (n = 0) {
@@ -143,13 +145,5 @@ const GameBoard = {
     return true
   }
 }
-
-// function deployShip (n = 0) {
-//   if (n >= player1.Ships[ship].length) {
-//     return
-//   }
-//   GameBoard.player1Grid[coords.y][coords.x + n] = ship
-//   deployShip(n + 1)
-// }
 
 export { GameBoard }
