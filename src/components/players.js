@@ -20,7 +20,6 @@ const player1 = {
         const ship = GameBoard.player2Grid[coords.y][coords.x].name
         player2.Ships[ship].hit()
         displayHit(element, ship)
-        console.log(player2.Ships[ship])
       } else {
         displayMiss(element)
       }
@@ -46,64 +45,95 @@ const player2 = {
   attackArray: [],
   // Hits - cleared after sinking ships
   hitsArray: [],
-  tests: {
-    testForwards: { condition: false, key: 'x', value: '+ 1' },
-    testDown: { condition: false, key: 'y', value: '- 1' },
-    testback: { condition: false, key: 'x', value: '- 1' },
-    testUp: { condition: false, key: 'y', value: '+ 1' }
-  },
   attackKnownShip () {
     if (player1.wins || player2.wins) {
       return
     }
 
-    // Check if next attack has already been selected - try new coords
-    // need to check attacksArray and hitsArray
-    const check = this.hitsArray[0] + 1
-    if (player2.attackArray.includes(check)) {
+    // Check initial number to ensure not out of bounds
+    if (this.hitsArray[0].initial + this.hitsArray[0].direction < 0) {
       this.hitsArray.shift()
-      player2.attack()
+      console.log('reset')
+      this.attack()
       return
     }
-
-    // if greater than 9 - out of bounds - try new coords
-    // Get NEXT element - push to attack array
-    const getLastIndex = this.attackArray.length - 1
-    const elementCoords = document.getElementById(this.attackArray[getLastIndex])
-    const lastHitCoords = elementCoords.dataset.coords
-    if (lastHitCoords.x === 9) {
-      // Will add next coords to attack to sink ship
+    // Check initial number to ensure not out of bounds
+    if (this.hitsArray[0].initial + this.hitsArray[0].direction > 99) {
+      this.hitsArray.shift()
+      console.log('reset')
+      this.attack()
+      return
+    }
+    // Check if next attack has already been selected - try new coords
+    const number = this.hitsArray[0].initial + this.hitsArray[0].direction
+    console.log(number)
+    if (this.attackArray.includes(number)) {
+      this.hitsArray.shift()
+      console.log('reset')
       this.attack()
       return
     }
 
+    // if greater/less than new direction - out of bounds - try new coords
+    const elementCoords = document.getElementById(this.hitsArray[0].initial)
+    const coordsCheck = JSON.parse(elementCoords.dataset.coords)
+
+    if (this.hitsArray[0].text === 'forwards') {
+      if (coordsCheck.x + 1 > 9) {
+        console.log('reset')
+        this.hitsArray.shift()
+        this.attack()
+        return
+      }
+    }
+    if (this.hitsArray[0].text === 'backwards') {
+      if (coordsCheck.x - 1 < 0) {
+        console.log('reset')
+        this.hitsArray.shift()
+        this.attack()
+        return
+      }
+    }
+    if (this.hitsArray[0].text === 'up') {
+      if (coordsCheck.y - 1 < 0) {
+        console.log('reset')
+        this.hitsArray.shift()
+        this.attack()
+        return
+      }
+    }
+    if (this.hitsArray[0].text === 'down') {
+      if (coordsCheck.y + 1 > 9) {
+        console.log('reset')
+        this.hitsArray.shift()
+        this.attack()
+        return
+      }
+    }
+
     setTimeout(() => {
-      // Get NEXT element - push to attack array
-      const getLastIndex = this.attackArray.length - 1
-      const element = document.getElementById(this.attackArray[getLastIndex] + 1)
+      // Push new coords to attacked array
+      const newNumber = this.hitsArray[0].initial + this.hitsArray[0].direction
+      player2.attackArray.push(newNumber)
+
+      // Element for Change!
+      const element = document.getElementById(newNumber)
       const coords = JSON.parse(element.dataset.coords)
-      player2.attackArray.push(this.attackArray[getLastIndex] + 1)
 
-      const checkForwards = { x: coords.x, y: coords.y }
-
-      if (typeof GameBoard.player1Grid[checkForwards.y][checkForwards.x] === 'object') {
-        const ship = GameBoard.player1Grid[checkForwards.y][checkForwards.x].name
+      if (typeof GameBoard.player1Grid[coords.y][coords.x] === 'object') {
+        const ship = GameBoard.player1Grid[coords.y][coords.x].name
         player1.Ships[ship].hit()
         displayHit(element, ship)
-        this.hitsArray.push(element)
-      }
-      // if (typeof GameBoard.player1Grid[coords.y][coords.x] !== 'object' && !this.tests.forwards) {
-      //   this.tests.forwards.condition = true
-      //   initialCoords.x - 1
-      //   this.hitsArray.push(initialCoords)
-      // }
-      else {
+        this.hitsArray[0].initial = this.hitsArray[0].initial + this.hitsArray[0].direction
+        console.log(this.hitsArray)
+      } else if (typeof GameBoard.player1Grid[coords.y][coords.x] !== 'object') {
+        this.hitsArray.shift()
+        console.log(this.hitsArray)
         displayMiss(element)
       }
       setTimeout(() => {
         player1.turn = true
         this.turn = false
-        this.hitsArray.shift()
       }, 500)
     }, 3000)
   },
@@ -124,7 +154,6 @@ const player2 = {
 
     setTimeout(() => {
       this.attackArray.push(randomNumber)
-      console.log(player2.attackArray)
       const element = document.getElementById(randomNumber)
       const coords = JSON.parse(element.dataset.coords)
 
@@ -132,11 +161,15 @@ const player2 = {
         const ship = GameBoard.player1Grid[coords.y][coords.x].name
         player1.Ships[ship].hit()
         displayHit(element, ship)
-        this.hitsArray.push(randomNumber)
+        const forwards = { initial: randomNumber, direction: 1, text: 'forwards' }
+        const backwards = { initial: randomNumber, direction: -1, text: 'backwards' }
+        const up = { initial: randomNumber, direction: -10, text: 'up' }
+        const down = { initial: randomNumber, direction: 10, text: 'down' }
+        this.hitsArray.push(forwards, backwards, up, down)
+        console.log(this.hitsArray)
       } else {
         displayMiss(element)
       }
-
       setTimeout(() => {
         player1.turn = true
         this.turn = false
