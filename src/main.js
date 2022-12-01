@@ -3,7 +3,7 @@ import './styles/normalize.css'
 import './styles/style.css'
 import { shipTemplate } from './templates/shipsTemplate'
 import { attackTemplate, boardTemplate } from './templates/board'
-import { selectShip } from './playerInteraction'
+import { selectShip } from './domChanges/placeShips'
 
 import './assets/aircraftcarrierBig.svg'
 import './assets/battleshipBig.svg'

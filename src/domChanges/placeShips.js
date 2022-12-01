@@ -1,5 +1,5 @@
-import { GameBoard } from './components/gameBoard'
-import { player1 } from './components/players'
+import { GameBoard } from '../components/gameBoard'
+import { player1 } from '../components/players'
 import { createElement, ChevronUp, ChevronDown, ChevronLeft, ChevronRight, Check } from 'lucide'
 
 // Stores clicked Elements for removing on different tile click
@@ -8,17 +8,26 @@ let storeElements = []
 const DOMElements = {
   display: document.querySelector('#displayInfo'),
   board: document.querySelector('#board'),
-  attackBoard: document.querySelector('#attackBoard'),
   ships: document.querySelector('#ships'),
-  start: document.querySelector('#start')
+  start: document.querySelector('#start'),
+  attackBoard: document.querySelector('#attackBoard'),
+  enemyShips: document.querySelector('#enemyShips')
+
 }
 
 DOMElements.start.addEventListener('click', () => {
   const start = GameBoard.startGame()
   if (start) {
+    const attackTile = [...document.querySelectorAll('.attackTile')]
+    attackTile.forEach(element => {
+      element.addEventListener('click', () => {
+        player1.attack(element)
+      })
+    })
     DOMElements.start.style.display = 'none'
     DOMElements.display.textContent = 'Fire When Ready'
     DOMElements.attackBoard.style.display = 'grid'
+    DOMElements.enemyShips.style.display = 'flex'
   }
   if (!start) {
     DOMElements.start.innerHTML = '<button>You must deploy your entire fleet</button>'
@@ -55,10 +64,10 @@ function chooseCoords (shipElement, ship) {
       player1.Ships[item].condition = 'waiting'
     }
   }
-  // Set first clicked Ship to active
+  // Set clicked Ship to active
   player1.Ships[ship].condition = 'active'
   addConfirmChecks(shipElement)
-  // shipElement.target.style.backgroundColor = 'rgba(235, 252, 2, 0.808)'
+
   const tiles = [...document.querySelectorAll('.tile')]
   tiles.forEach(element => {
     const getCoords = element.dataset.coords
@@ -96,7 +105,7 @@ function getShipOrientationOptions (ship, coords, element, player) {
   down.classList.add('down')
   left.classList.add('left')
   right.classList.add('right')
-
+  // Check allowed moves and give events based on what moves are allowed
   if (player.Ships[ship].moves.up.allowed) {
     element.append(up)
     up.addEventListener('click', (e) => {

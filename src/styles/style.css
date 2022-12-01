@@ -8,16 +8,17 @@ body {
   font-size: 3em;
 }
 #gameBoard {
-  margin: 20px;
+  width: 95%;
+  margin: 25px auto;
 }
 .container {
   position: relative;
   display: flex;
+  justify-content: center;
 }
 
 #displayInfo {
   text-align: center;
-  width: 50%;
   font-size: 2em;
 }
 
@@ -33,6 +34,7 @@ body {
 
 #attackBoard {
   display: none;
+  margin: 0 25px 25px 25px;
 }
 
 .tile, .attackTile {
@@ -52,9 +54,20 @@ body {
 .tile img {
   position: absolute;
 }
+.hitMarker {
+  color: red;
+}
+.hitMarker, .missMarker {
+  font-size: 3em;
+  text-align: center;
+}
+.missMarker {
+  color: white;
+}
 
 #start {
   width: 100%;
+  text-align: center;
 }
 #start button {
   padding: 15px;
@@ -63,7 +76,7 @@ body {
 
 /* Tile Ship Placement Icons */
 .up, .down, .left, .right {
-  color: rgb(0, 128, 0);
+  color: white;
 }
 .up:hover, .down:hover, .left:hover, .right:hover {
   scale: 1.5;
@@ -120,12 +133,16 @@ body {
 }
 
 /* Ship Styles */
-#ships {
+#ships, #enemyShips {
   display: flex;
   position: relative;
   flex-direction: column;
 }
-.ship {
+
+#enemyShips {
+  display: none
+}
+.ship, .enemyShip {
   background-color: #ffffff;
   background-position: 50%;
   background-repeat: no-repeat;
@@ -138,27 +155,27 @@ svg.confirm {
   width: 50px;
   height: 50px;
 }
-#Carrier {
+#carrier, #enemy-carrier {
   background-image: url(../assets/aircraftcarrier.svg);
   color: red;
 }
 
-#Battleship {
+#battleship, #enemy-battleship {
   background-image: url(../assets/battleship.svg);
   color: red;
 }
 
-#Destroyer {
+#destroyer, #enemy-destroyer {
   background-image: url(../assets/destroyer.svg);
   color: red;
 }
 
-#Warship {
+#warship, #enemy-warship {
   background-image: url(../assets/warship.svg);
   color: red;
 }
 
-#Patrol {
+#patrol, #enemy-patrol {
   background-image: url(../assets/patrol.svg);
   color: red;
 }

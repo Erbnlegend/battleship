@@ -1,6 +1,7 @@
 import { player1, player2 } from './players'
 import { ShipsFactory } from './ships'
-import { getShipOrientationOptions } from '../playerInteraction'
+import { getShipOrientationOptions } from '../domChanges/placeShips'
+import { win } from '../domChanges/playerAttack'
 
 const ShipsBlueprint = ShipsFactory()
 
@@ -30,14 +31,14 @@ const GameBoard = {
     ['', '', '', '', '', '', '', '', '', '']
   ],
   // Find Possible Routes based on Grid
-  determineShipOrientation: function (ship, coords, element, player) {
+  determineShipOrientation (ship, coords, element, player) {
     const locationX = coords.x
     const locationY = coords.y
     this.testBorderOverRun(ship, locationX, player.Ships[ship].moves.forwards, player.Ships[ship].moves.backwards)
     this.testBorderOverRun(ship, locationY, player.Ships[ship].moves.down, player.Ships[ship].moves.up)
     this.testFillGrid(ship, coords, element, player)
   },
-  testBorderOverRun: function (ship, location, direction1, direction2) {
+  testBorderOverRun (ship, location, direction1, direction2) {
     // Need check on if ship is already in as location on grid
     const shipLength = ShipsBlueprint[ship].length
     const sum = location + shipLength
@@ -49,7 +50,7 @@ const GameBoard = {
       direction2.allowed = false
     }
   },
-  testFillGrid: function (ship, coords, element, player) {
+  testFillGrid (ship, coords, element, player) {
     const shipLength = ShipsBlueprint[ship].length
     test()
     function test (n = 0) {
@@ -84,8 +85,7 @@ const GameBoard = {
     }
     getShipOrientationOptions(ship, coords, element, player)
   },
-  deployShip: function (direction, ship, player, coords) {
-    console.log(coords)
+  deployShip (direction, ship, player, coords) {
     player.Ships[ship].condition = 'deployed'
     for (const item in player.Ships) {
       if (player.Ships[item].condition === 'waiting') {
@@ -134,15 +134,20 @@ const GameBoard = {
       }
     }
   },
-  startGame: function () {
+  startGame () {
     for (const item in player1.Ships) {
       if (player1.Ships[item].condition !== 'deployed') {
-        console.log('cannot start')
         return false
       }
     }
     player2.deploy()
     return true
+  },
+  checkWin (player) {
+    if (player.Ships.carrier.sunk && player.Ships.battleship.sunk && player.Ships.destroyer.sunk && player.Ships.warship.sunk && player.Ships.patrol.sunk) {
+      win(player)
+      return true
+    }
   }
 }
 

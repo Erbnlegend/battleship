@@ -1,7 +1,7 @@
 function ShipsFactory () {
   return {
     carrier: {
-      name: 'Carrier',
+      name: 'carrier',
       url: './imgs/aircraftcarrierBig.svg',
       length: 5,
       hitPoints: 5,
@@ -29,7 +29,7 @@ function ShipsFactory () {
       }
     },
     battleship: {
-      name: 'Battleship',
+      name: 'battleship',
       url: './imgs/battleshipBig.svg',
       length: 4,
       hitPoints: 4,
@@ -57,7 +57,7 @@ function ShipsFactory () {
       }
     },
     destroyer: {
-      name: 'Destroyer',
+      name: 'destroyer',
       url: './imgs/destroyerBig.svg',
       length: 3,
       hitPoints: 3,
@@ -85,7 +85,7 @@ function ShipsFactory () {
       }
     },
     warship: {
-      name: 'Warship',
+      name: 'warship',
       url: '../imgs/warshipBig.svg',
       length: 3,
       hitPoints: 3,
@@ -113,7 +113,7 @@ function ShipsFactory () {
       }
     },
     patrol: {
-      name: 'Patrol',
+      name: 'patrol',
       url: './imgs/patrolBig.svg',
       length: 2,
       hitPoints: 2,
