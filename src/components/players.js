@@ -8,9 +8,9 @@ const player1 = {
   wins: false,
   Ships: ShipsFactory(),
   attack (element) {
-    // if (player1.wins || player2.wins) {
-    //   return
-    // }
+    if (player1.wins || player2.wins) {
+      return
+    }
     if (element.classList.contains('triggered') || !this.turn) {
       return
     }
@@ -42,7 +42,9 @@ const player2 = {
   turn: false,
   wins: false,
   Ships: ShipsFactory(),
+  // All Attacks
   attackArray: [],
+  // Hits - cleared after sinking ships
   hitsArray: [],
   tests: {
     testForwards: { condition: false, key: 'x', value: '+ 1' },
@@ -54,36 +56,41 @@ const player2 = {
     if (player1.wins || player2.wins) {
       return
     }
-    const initialCoords = this.hitsArray[0]
-    console.log(this.hitsArray)
+
+    // Check if next attack has already been selected - try new coords
+    // need to check attacksArray and hitsArray
+    const check = this.hitsArray[0] + 1
+    if (player2.attackArray.includes(check)) {
+      this.hitsArray.shift()
+      player2.attack()
+      return
+    }
+
+    // if greater than 9 - out of bounds - try new coords
+    // Get NEXT element - push to attack array
+    const getLastIndex = this.attackArray.length - 1
+    const elementCoords = document.getElementById(this.attackArray[getLastIndex])
+    const lastHitCoords = elementCoords.dataset.coords
+    if (lastHitCoords.x === 9) {
+      // Will add next coords to attack to sink ship
+      this.attack()
+      return
+    }
+
     setTimeout(() => {
-      for (let i = 0; i >= this.attackArray.length; i++) {
-        const check = this.attackArray[i]
-        if (player2.attackArray.includes(check)) {
-          this.hitsArray.shift()
-          player2.attack()
-          return
-        }
-      }
+      // Get NEXT element - push to attack array
       const getLastIndex = this.attackArray.length - 1
       const element = document.getElementById(this.attackArray[getLastIndex] + 1)
+      const coords = JSON.parse(element.dataset.coords)
       player2.attackArray.push(this.attackArray[getLastIndex] + 1)
-      this.hitsArray[0].x = this.hitsArray[0].x + 1
-      if (this.hitsArray.x > 9) {
-        displayMiss(element)
-        setTimeout(() => {
-          player1.turn = true
-          this.turn = false
-          this.hitsArray.shift()
-        }, 500)
-        return
-      }
-      const coords = this.hitsArray[0]
-      if (typeof GameBoard.player1Grid[coords.y][coords.x] === 'object') {
-        const ship = GameBoard.player1Grid[coords.y][coords.x].name
+
+      const checkForwards = { x: coords.x, y: coords.y }
+
+      if (typeof GameBoard.player1Grid[checkForwards.y][checkForwards.x] === 'object') {
+        const ship = GameBoard.player1Grid[checkForwards.y][checkForwards.x].name
         player1.Ships[ship].hit()
         displayHit(element, ship)
-        this.hitsArray.push(coords)
+        this.hitsArray.push(element)
       }
       // if (typeof GameBoard.player1Grid[coords.y][coords.x] !== 'object' && !this.tests.forwards) {
       //   this.tests.forwards.condition = true
@@ -105,32 +112,38 @@ const player2 = {
       return
     }
     const randomNumber = Math.floor(Math.random() * 100)
+    // If hit on previous play, attack next coordinates near hit - stop this function
     if (this.hitsArray.length > 0) {
       this.attackKnownShip()
       return
-    } else if (player2.attackArray.includes(randomNumber)) {
+      // If the coords/number is already picked previously, restart
+    } else if (this.attackArray.includes(randomNumber)) {
       player2.attack()
       return
     }
+
     setTimeout(() => {
-      player2.attackArray.push(randomNumber)
+      this.attackArray.push(randomNumber)
       console.log(player2.attackArray)
       const element = document.getElementById(randomNumber)
       const coords = JSON.parse(element.dataset.coords)
+
       if (typeof GameBoard.player1Grid[coords.y][coords.x] === 'object') {
         const ship = GameBoard.player1Grid[coords.y][coords.x].name
         player1.Ships[ship].hit()
         displayHit(element, ship)
-        this.hitsArray.push(coords)
+        this.hitsArray.push(randomNumber)
       } else {
         displayMiss(element)
       }
+
       setTimeout(() => {
         player1.turn = true
         this.turn = false
       }, 500)
     }, 3000)
   },
+  // Need to store coords for ships to ensure ship coords are not picked twice
   coordsArray: [],
   deploy () {
     for (const item in this.Ships) {
