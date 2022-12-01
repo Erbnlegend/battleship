@@ -17,7 +17,7 @@ const player1 = {
     if (this.turn) {
       const coords = JSON.parse(element.dataset.coords)
       if (typeof GameBoard.player2Grid[coords.y][coords.x] === 'object') {
-        const ship = GameBoard.player2Grid[coords.y][coords.x].name[0].toLowerCase() + GameBoard.player2Grid[coords.y][coords.x].name.slice(1)
+        const ship = GameBoard.player2Grid[coords.y][coords.x].name
         player2.Ships[ship].hit()
         displayHit(element, ship)
         console.log(player2.Ships[ship])
@@ -80,7 +80,7 @@ const player2 = {
       }
       const coords = this.hitsArray[0]
       if (typeof GameBoard.player1Grid[coords.y][coords.x] === 'object') {
-        const ship = GameBoard.player1Grid[coords.y][coords.x].name[0].toLowerCase() + GameBoard.player1Grid[coords.y][coords.x].name.slice(1)
+        const ship = GameBoard.player1Grid[coords.y][coords.x].name
         player1.Ships[ship].hit()
         displayHit(element, ship)
         this.hitsArray.push(coords)
@@ -118,7 +118,7 @@ const player2 = {
       const element = document.getElementById(randomNumber)
       const coords = JSON.parse(element.dataset.coords)
       if (typeof GameBoard.player1Grid[coords.y][coords.x] === 'object') {
-        const ship = GameBoard.player1Grid[coords.y][coords.x].name[0].toLowerCase() + GameBoard.player1Grid[coords.y][coords.x].name.slice(1)
+        const ship = GameBoard.player1Grid[coords.y][coords.x].name
         player1.Ships[ship].hit()
         displayHit(element, ship)
         this.hitsArray.push(coords)
@@ -134,7 +134,7 @@ const player2 = {
   coordsArray: [],
   deploy () {
     for (const item in this.Ships) {
-      const shipName = this.Ships[item].name[0].toLowerCase() + this.Ships[item].name.slice(1)
+      const shipName = this.Ships[item].name
       // Store on ship for placement
       let randomX = Math.floor(Math.random() * 10)
       let randomY = Math.floor(Math.random() * 10)

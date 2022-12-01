@@ -46,9 +46,7 @@ function addConfirmChecks (e) {
 function selectShip () {
   const allShips = [...document.querySelectorAll('.ship')]
   allShips.forEach(element => {
-    const name = element.dataset.name
-    const matchCase = name[0].toLowerCase() + name.slice(1)
-    const shipName = matchCase
+    const shipName = element.dataset.name
     element.addEventListener('click', (e) => {
       chooseCoords(e, shipName)
     })
