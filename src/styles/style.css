@@ -165,21 +165,26 @@ svg.confirm {
 
 /* Ship Button Image URLs */
 #carrier, #enemy-carrier {
+  background-image: url(../assets/aircraftcarrier.svg);
   color: red;
 }
 
 #battleship, #enemy-battleship {
+  background-image: url(../assets/battleship.svg);
   color: red;
 }
 
 #destroyer, #enemy-destroyer {
+  background-image: url(../assets/destroyer.svg);
   color: red;
 }
 
 #warship, #enemy-warship {
+  background-image: url(../assets/warship.svg);
   color: red;
 }
 
 #patrol, #enemy-patrol {
+  background-image: url(../assets/patrol.svg);
   color: red;
 }
