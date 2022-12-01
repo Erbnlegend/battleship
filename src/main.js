@@ -12,11 +12,11 @@ import './assets/destroyer.svg'
 import './assets/warship.svg'
 import './assets/patrol.svg'
 
-import './styles/style.css'
-
 import { shipTemplate } from './templates/shipsTemplate'
 import { attackTemplate, boardTemplate } from './templates/board'
 import { selectShip } from './domChanges/placeShips'
+
+import './styles/style.css'
 
 // Playing Grid
 boardTemplate()
