@@ -1,9 +1,5 @@
 import './index.html'
 import './styles/normalize.css'
-import './styles/style.css'
-import { shipTemplate } from './templates/shipsTemplate'
-import { attackTemplate, boardTemplate } from './templates/board'
-import { selectShip } from './domChanges/placeShips'
 
 import './assets/aircraftcarrierBig.svg'
 import './assets/battleshipBig.svg'
@@ -15,6 +11,12 @@ import './assets/battleship.svg'
 import './assets/destroyer.svg'
 import './assets/warship.svg'
 import './assets/patrol.svg'
+
+import './styles/style.css'
+
+import { shipTemplate } from './templates/shipsTemplate'
+import { attackTemplate, boardTemplate } from './templates/board'
+import { selectShip } from './domChanges/placeShips'
 
 // Playing Grid
 boardTemplate()
