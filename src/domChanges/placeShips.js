@@ -15,6 +15,7 @@ const DOMElements = {
 
 }
 
+// Begin Battle button
 DOMElements.start.addEventListener('click', () => {
   const start = GameBoard.startGame()
   if (start) {
@@ -34,6 +35,7 @@ DOMElements.start.addEventListener('click', () => {
   }
 })
 
+// Add CheckMarks as ships are placed onto the board
 function addConfirmChecks (e) {
   const check = createElement(Check)
   check.classList.add('confirm')
@@ -55,6 +57,7 @@ function selectShip () {
 
 // Launched from selecting a Ship to place
 function chooseCoords (shipElement, ship) {
+  // Does not allow already placed, waiting for placement or currently placed ship to be placed
   if (player1.Ships[ship].condition === 'waiting' || player1.Ships[ship].condition === 'active' || player1.Ships[ship].condition === 'deployed') {
     return
   }
@@ -74,9 +77,11 @@ function chooseCoords (shipElement, ship) {
     const coords = JSON.parse(getCoords)
     element.addEventListener('click', (e) => {
       GameBoard.determineShipOrientation(ship, coords, element, player1)
+
       // Stores Element if clicked
       storeElements.push(element.id)
 
+      // Remove previous elements children if new selection is made
       if (storeElements.length > 1) {
         if (player1.Ships[ship].condition === 'placed') {
           return
@@ -136,7 +141,7 @@ function getShipOrientationOptions (ship, coords, element, player) {
   }
 }
 
-// Arrows showing available layouts
+// Arrows showing available deployment options
 function placeShipOnBoard (direction, element, ship, coords) {
   const deploymentComplete = document.getElementById(player1.Ships[ship].name)
   deploymentComplete.style.color = 'green'

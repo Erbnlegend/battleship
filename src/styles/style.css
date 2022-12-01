@@ -1,3 +1,4 @@
+/* General Styles */
 body {
   margin: 0;
   background-image: linear-gradient(to right, rgba(12, 73, 102, 0.795), rgba(78, 104, 103, 0.815));
@@ -7,6 +8,8 @@ body {
   padding: 10px;
   font-size: 3em;
 }
+
+/* Main Container */
 #gameBoard {
   width: 95%;
   margin: 25px auto;
@@ -17,11 +20,13 @@ body {
   justify-content: center;
 }
 
+/* Give Information To User */
 #displayInfo {
   text-align: center;
   font-size: 2em;
 }
 
+/* Main Boards */
 #board, #attackBoard {
   display: grid;
   position: relative;
@@ -31,12 +36,10 @@ body {
   margin: 0 0 25px 25px;
   overflow: visible;
 }
-
 #attackBoard {
   display: none;
   margin: 0 25px 25px 25px;
 }
-
 .tile, .attackTile {
   min-height: 60px;
   position: relative;
@@ -54,17 +57,20 @@ body {
 .tile img {
   position: absolute;
 }
-.hitMarker {
-  color: red;
-}
+
+/* Hit and Miss Markers */
 .hitMarker, .missMarker {
   font-size: 3em;
   text-align: center;
+}
+.hitMarker {
+  color: red;
 }
 .missMarker {
   color: white;
 }
 
+/* Start/Begin Battle Button */
 #start {
   width: 100%;
   text-align: center;
@@ -107,6 +113,8 @@ body {
 
 }
 
+/* Main Images for Ship Placement */
+/* Incremented by 60px in this case based on tile size - want to make this adjustable */
 .carrier {
   width: 300px;
   top: 10%;
@@ -132,13 +140,12 @@ body {
   top: 40%;
 }
 
-/* Ship Styles */
+/* Ship Placement Button Styles */
 #ships, #enemyShips {
   display: flex;
   position: relative;
   flex-direction: column;
 }
-
 #enemyShips {
   display: none
 }
@@ -155,6 +162,8 @@ svg.confirm {
   width: 50px;
   height: 50px;
 }
+
+/* Ship Button Image URLs */
 #carrier, #enemy-carrier {
   background-image: url(../assets/aircraftcarrier.svg);
   color: red;

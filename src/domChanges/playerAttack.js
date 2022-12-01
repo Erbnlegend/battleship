@@ -2,6 +2,7 @@ import { GameBoard } from '../components/gameBoard'
 import { player1, player2 } from '../components/players'
 import { DOMElements } from './placeShips'
 
+// Shows misses on the boards
 function displayMiss (element) {
   const createMarker = document.createElement('div')
   createMarker.classList.add('missMarker')
@@ -17,6 +18,7 @@ function displayMiss (element) {
   }
 }
 
+// Shows Hits on the boards
 function displayHit (element, ship) {
   const createMarker = document.createElement('div')
   createMarker.classList.add('hitMarker')
@@ -50,6 +52,7 @@ function displayHit (element, ship) {
   }
 }
 
+// Shows when all ships have been sunk
 function win (player) {
   if (player.name === 'player2') {
     DOMElements.display.textContent = 'You have sunk all enemy ships'

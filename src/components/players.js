@@ -36,6 +36,7 @@ const player1 = {
     this.Ships[ship].moves.down.allowed = true
   }
 }
+
 const player2 = {
   name: 'player2',
   turn: false,

@@ -38,8 +38,8 @@ const GameBoard = {
     this.testBorderOverRun(ship, locationY, player.Ships[ship].moves.down, player.Ships[ship].moves.up)
     this.testFillGrid(ship, coords, element, player)
   },
+  // Tests if the ship will overrun the edges of the board x: 0 - 9, y: 0 - 9
   testBorderOverRun (ship, location, direction1, direction2) {
-    // Need check on if ship is already in as location on grid
     const shipLength = ShipsBlueprint[ship].length
     const sum = location + shipLength
     const diff = location - shipLength
@@ -50,6 +50,7 @@ const GameBoard = {
       direction2.allowed = false
     }
   },
+  // Tests if a ship will hit another ship before placement
   testFillGrid (ship, coords, element, player) {
     const shipLength = ShipsBlueprint[ship].length
     test()
@@ -79,12 +80,15 @@ const GameBoard = {
       }
       test(n + 1)
     }
-    // Dom Manipulation on information given
+    // Skip Arrow Selection for computer
     if (player.name === 'player2') {
       return
     }
+
+    // Dom Manipulation for user input
     getShipOrientationOptions(ship, coords, element, player)
   },
+  // add ship to Grid based on player
   deployShip (direction, ship, player, coords) {
     player.Ships[ship].condition = 'deployed'
     for (const item in player.Ships) {
@@ -134,6 +138,7 @@ const GameBoard = {
       }
     }
   },
+  // Begin button tells if ships are all placed and starts computer deployment
   startGame () {
     for (const item in player1.Ships) {
       if (player1.Ships[item].condition !== 'deployed') {
