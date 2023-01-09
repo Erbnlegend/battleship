@@ -4,6 +4,7 @@
 }
 .up:hover, .down:hover, .left:hover, .right:hover {
   scale: 1.5;
+  color: green;
 }
 .up {
   position: absolute;
@@ -29,4 +30,10 @@
   align-items: center;
   right: -5px;
 
+}
+
+@media screen and (max-width: 1600px) {
+  .up:hover, .down:hover, .left:hover, .right:hover {
+    scale: 1.1;
+  }
 }
