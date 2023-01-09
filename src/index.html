@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rubik+Distressed&display=swap" rel="stylesheet">
@@ -14,9 +15,19 @@
   <div id="displayInfo">Deploy your fleet</div>
   <div id="gameBoard">
     <div class="container">
-      <div id="ships"></div>
+      <div class='friendly header'>Friendly Waters</div>
       <div id="board"></div>
+      <div class="shipyard">Shipyard</div>
+      <div id="ships"></div>
+    </div>
+    <div class="start">
+      <div>To begin, first place your fleet, then press the button below</div>
+      <button id="start">Begin Battle</button>
+    </div>
+    <div class="container">
+      <div class='enemy header'>Enemy Waters</div>
       <div id="attackBoard"></div>
+      <div class="shipyard">Shipyard</div>
       <div id="enemyShips">
         <button id="enemy-carrier" class="enemyShip"></button>
         <button id="enemy-battleship" class="enemyShip"></button>
@@ -25,8 +36,6 @@
         <button id="enemy-patrol" class="enemyShip"></button>
       </div>
     </div>
-    <div id="start"><button>Begin Battle</button></div>
-
   </div>
 </body>
 <script src="runtime.js"></script>

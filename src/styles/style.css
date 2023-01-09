@@ -1,190 +1,37 @@
+@import './gameboard.css';
+@import './ships.css';
+@import './placement.css';
+
 /* General Styles */
 body {
   margin: 0;
-  background-image: linear-gradient(to right, rgba(12, 73, 102, 0.795), rgba(78, 104, 103, 0.815));
+  background-color: white;
   font-family: 'Rubik Distressed', cursive;
 }
+
 #title {
   padding: 10px;
-  font-size: 3em;
+  font-size: 2rem;
 }
 
-/* Main Container */
-#gameBoard {
-  width: 95%;
-  margin: 25px auto;
-}
-.container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-
-/* Give Information To User */
 #displayInfo {
   text-align: center;
-  font-size: 2em;
+  font-size: 1.5rem;
 }
 
-/* Main Boards */
-#board, #attackBoard {
-  display: grid;
-  position: relative;
-  grid-template-columns: repeat(10, minmax(60px, 1fr));
-  justify-content: center;
-  align-items: center;
-  margin: 0 0 25px 25px;
-  overflow: visible;
-}
-#attackBoard {
-  display: none;
-  margin: 0 25px 25px 25px;
-}
-.tile, .attackTile {
-  min-height: 60px;
-  position: relative;
-  border: 2px solid rgba(243, 239, 239, 0.15);
-  border-radius: 8px;
-}
-.tile:hover {
-  border-color: rgb(0, 128, 0);
-  box-shadow: inset 0 0 5px #000;
-}
-.attackTile:hover {
-  border-color: rgb(128, 0, 0);
-  box-shadow: inset 0 0 10px #000;
-}
-.tile img {
-  position: absolute;
-}
-
-/* Hit and Miss Markers */
-.hitMarker, .missMarker {
-  font-size: 3em;
+.start {
   text-align: center;
-}
-.hitMarker {
-  color: red;
-}
-.missMarker {
-  color: white;
+  & #start {
+    margin-top: 20px;
+    padding: 10px;
+  }
+  & button {
+
+  }
 }
 
-/* Start/Begin Battle Button */
-#start {
-  width: 100%;
-  text-align: center;
-}
-#start button {
-  padding: 15px;
-  width: 50%;
-}
-
-/* Tile Ship Placement Icons */
-.up, .down, .left, .right {
-  color: white;
-}
-.up:hover, .down:hover, .left:hover, .right:hover {
-  scale: 1.5;
-}
-.up {
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  top: -5px;
-}
-.down {
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  bottom: -5px;
-}
-.left {
-  position: absolute;
-  height: 100%;
-  align-items: center;
-  left: -5px;
-}
-.right {
-  position: absolute;
-  height: 100%;
-  align-items: center;
-  right: -5px;
-
-}
-
-/* Main Images for Ship Placement */
-/* Incremented by 60px in this case based on tile size - want to make this adjustable */
-.carrier {
-  width: 300px;
-  top: 10%;
-}
-
-.battleship {
-  width: 240px;
-  top: 25%;
-}
-
-.destroyer {
-  width: 180px;
-  top: 35%;
-}
-
-.warship {
-  width: 180px;
-  top: 40%;
-}
-
-.patrol {
-  width: 120px;
-  top: 40%;
-}
-
-/* Ship Placement Button Styles */
-#ships, #enemyShips {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-}
-#enemyShips {
-  display: none
-}
-.ship, .enemyShip {
-  background-color: #ffffff;
-  background-position: 50%;
-  background-repeat: no-repeat;
-  border: 2px solid rgba(0, 0, 0, 0.2);
-  margin: 5px 0;
-  width: 150px;
-  height: 62px;
-}
-svg.confirm {
-  width: 50px;
-  height: 50px;
-}
-
-/* Ship Button Image URLs */
-#carrier, #enemy-carrier {
-  background-image: url(../assets/aircraftcarrier.svg);
-  color: red;
-}
-
-#battleship, #enemy-battleship {
-  background-image: url(../assets/battleship.svg);
-  color: red;
-}
-
-#destroyer, #enemy-destroyer {
-  background-image: url(../assets/destroyer.svg);
-  color: red;
-}
-
-#warship, #enemy-warship {
-  background-image: url(../assets/warship.svg);
-  color: red;
-}
-
-#patrol, #enemy-patrol {
-  background-image: url(../assets/patrol.svg);
-  color: red;
+@media screen and (max-width: 1200px) {
+  #displayInfo::before {
+    content: 'This game is meant to be played on larger than 1200px screens \A'
+  }
 }

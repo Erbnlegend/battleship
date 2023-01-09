@@ -1,0 +1,32 @@
+/* Tile Ship Placement Icons */
+.up, .down, .left, .right {
+  color: rgb(0,0,0);
+}
+.up:hover, .down:hover, .left:hover, .right:hover {
+  scale: 1.5;
+}
+.up {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: -5px;
+}
+.down {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: -5px;
+}
+.left {
+  position: absolute;
+  height: 100%;
+  align-items: center;
+  left: -5px;
+}
+.right {
+  position: absolute;
+  height: 100%;
+  align-items: center;
+  right: -5px;
+
+}

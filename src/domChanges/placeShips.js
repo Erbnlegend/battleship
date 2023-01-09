@@ -5,6 +5,13 @@ import { createElement, ChevronUp, ChevronDown, ChevronLeft, ChevronRight, Check
 // Stores clicked Elements for removing on different tile click
 let storeElements = []
 
+let width = window.innerWidth
+
+const getSize = () => {
+  width = window.innerWidth
+}
+window.addEventListener('resize', getSize)
+
 const DOMElements = {
   display: document.querySelector('#displayInfo'),
   board: document.querySelector('#board'),
@@ -27,11 +34,9 @@ DOMElements.start.addEventListener('click', () => {
     })
     DOMElements.start.style.display = 'none'
     DOMElements.display.textContent = 'Fire When Ready'
-    DOMElements.attackBoard.style.display = 'grid'
-    DOMElements.enemyShips.style.display = 'flex'
   }
   if (!start) {
-    DOMElements.start.innerHTML = '<button>You must deploy your entire fleet</button>'
+    DOMElements.start.innerHTML = 'You must deploy your entire fleet'
   }
 })
 
@@ -141,6 +146,8 @@ function getShipOrientationOptions (ship, coords, element, player) {
 
 // Arrows showing available deployment options
 function placeShipOnBoard (direction, element, ship, coords) {
+  const width = window.innerWidth
+  console.log()
   const deploymentComplete = document.getElementById(player1.Ships[ship].name)
   deploymentComplete.style.color = 'green'
   deploymentComplete.style.borderColor = 'green'
@@ -157,6 +164,9 @@ function placeShipOnBoard (direction, element, ship, coords) {
   createImg.addEventListener('click', (e) => {
     e.stopImmediatePropagation()
   })
+  if ((direction.text === 'down' || direction.text === 'up') && width <= 1600) {
+    createImg.style.transformOrigin = '20px'
+  }
   element.append(createImg)
   GameBoard.deployShip(direction, ship, player1, coords)
   storeElements = []

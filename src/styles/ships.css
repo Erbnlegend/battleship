@@ -1,0 +1,92 @@
+/* Ship Button Image URLs */
+#carrier, #enemy-carrier {
+  background-image: url(../assets/aircraftcarrier.svg);
+  color: red;
+}
+
+#battleship, #enemy-battleship {
+  background-image: url(../assets/battleship.svg);
+  color: red;
+}
+
+#destroyer, #enemy-destroyer {
+  background-image: url(../assets/destroyer.svg);
+  color: red;
+}
+
+#warship, #enemy-warship {
+  background-image: url(../assets/warship.svg);
+  color: red;
+}
+
+#patrol, #enemy-patrol {
+  background-image: url(../assets/patrol.svg);
+  color: red;
+}
+
+#ships, #enemyShips {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(60px, 1fr));
+  gap: 3px;
+}
+.ship, .enemyShip {
+  background-color: #ffffff;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  min-width: 150px;
+  min-height: 62px;
+}
+
+/* Incremented by 60px in this case based on tile size - want to make this adjustable */
+.carrier {
+  width: 300px;
+  top: 30%;
+}
+
+.battleship {
+  width: 240px;
+  top: 30%;
+}
+
+.destroyer {
+  width: 180px;
+  top: 30%;
+}
+
+.warship {
+  width: 180px;
+  top: 30%;
+}
+
+.patrol {
+  width: 120px;
+  top: 40%;
+}
+
+svg.confirm {
+  width: 50px;
+  height: 50px;
+}
+
+@media screen and (max-width: 1600px) {
+  .carrier {
+    width: 225px;
+  }
+  
+  .battleship {
+    width: 180px;
+  }
+  
+  .destroyer {
+    width: 135px;
+  }
+  
+  .warship {
+    width: 135px;
+  }
+  
+  .patrol {
+    width: 90px;
+  }
+}
