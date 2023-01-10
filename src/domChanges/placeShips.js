@@ -149,8 +149,8 @@ function placeShipOnBoard (direction, element, ship, coords) {
   const width = window.innerWidth
   console.log()
   const deploymentComplete = document.getElementById(player1.Ships[ship].name)
-  deploymentComplete.style.color = 'green'
-  deploymentComplete.style.borderColor = 'green'
+  deploymentComplete.style.color = 'rgb(15, 50, 255)'
+  deploymentComplete.style.borderColor = 'rgb(15, 50, 255)'
   const parent = document.getElementById(element.id)
   const children = [...parent.childNodes]
   children.forEach(childElements => {

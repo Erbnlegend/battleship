@@ -4,7 +4,7 @@
 }
 .up:hover, .down:hover, .left:hover, .right:hover {
   scale: 1.5;
-  color: green;
+  color: rgb(15, 50, 255);
 }
 .up {
   position: absolute;

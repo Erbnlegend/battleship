@@ -6,7 +6,7 @@
 body {
   margin: 0;
   background-color: white;
-  font-family: 'Rubik Distressed', cursive;
+  font-family: 'Roboto', sans-serif;;
 }
 
 #title {
@@ -26,7 +26,8 @@ body {
     padding: 10px;
   }
   & button {
-
+    border: none;
+    box-shadow: 0 5px 10px 1px rgb(0,0,0);
   }
 }
 
