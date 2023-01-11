@@ -5,8 +5,8 @@
 /* General Styles */
 body {
   margin: 0;
-  background-color: white;
-  font-family: 'Roboto', sans-serif;;
+  background-color: rgba(175,175,175, .3);
+  font-family: 'Rubik Distressed', cursive;
 }
 
 #title {

@@ -38,6 +38,7 @@
       justify-content: center;
       align-items: center;
       overflow: visible;
+      box-shadow: 0 0 15px 1px rgb(0,0,0);
     }
     & #attackBoard {
       display: grid;
@@ -47,6 +48,7 @@
       justify-content: center;
       align-items: center;
       overflow: visible;
+      box-shadow: 0 0 15px 1px rgb(0,0,0);
     }
     & .hitMarker, & .missMarker {
       font-size: 3em;
