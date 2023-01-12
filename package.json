@@ -12,8 +12,8 @@
     "test": "jest",
     "test-watch": "jest --watch",
     "watch": "webpack --watch",
-    "start": "webpack serve --open",
-    "build": "webpack"
+    "build": "NODE_ENV=production webpack --mode=\"production\" --progress",
+    "start": "NODE_ENV=development webpack serve --mode=\"development\" --open"
   },
   "repository": {
     "type": "git",
