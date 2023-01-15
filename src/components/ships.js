@@ -86,7 +86,7 @@ function ShipsFactory () {
     },
     warship: {
       name: 'warship',
-      url: '../imgs/warshipBig.svg',
+      url: './imgs/warshipBig.svg',
       length: 3,
       hitPoints: 3,
       sunk: false,

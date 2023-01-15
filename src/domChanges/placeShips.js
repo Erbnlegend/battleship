@@ -17,6 +17,7 @@ const DOMElements = {
   board: document.querySelector('#board'),
   ships: document.querySelector('#ships'),
   start: document.querySelector('#start'),
+  instructions: document.querySelector('.instructions'),
   attackBoard: document.querySelector('#attackBoard'),
   enemyShips: document.querySelector('#enemyShips')
 
@@ -33,6 +34,7 @@ DOMElements.start.addEventListener('click', () => {
       })
     })
     DOMElements.start.style.display = 'none'
+    DOMElements.instructions.style.opacity = '0'
     DOMElements.display.textContent = 'Fire When Ready'
   }
   if (!start) {
@@ -147,7 +149,6 @@ function getShipOrientationOptions (ship, coords, element, player) {
 // Arrows showing available deployment options
 function placeShipOnBoard (direction, element, ship, coords) {
   const width = window.innerWidth
-  console.log()
   const deploymentComplete = document.getElementById(player1.Ships[ship].name)
   deploymentComplete.style.color = 'rgb(15, 50, 255)'
   deploymentComplete.style.borderColor = 'rgb(15, 50, 255)'
