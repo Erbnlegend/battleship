@@ -33,6 +33,22 @@ body {
 
 @media screen and (max-width: 1200px) {
   #displayInfo::before {
-    content: 'This game is meant to be played on larger than 1200px screens \A'
+    content: 'This game is meant to be played on larger than 1200px screens \A \B';
+    margin-bottom: 15px;
+  }
+  .start {
+    position: absolute;
+    width: 25%;
+    top: 20%;
+    left: 0;
+    text-align: center;
+    & #start {
+      width: 50%;
+      padding: 10px;
+    }
+    & button {
+      border: none;
+      box-shadow: 0 5px 10px 1px rgb(0,0,0);
+    }
   }
 }

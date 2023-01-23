@@ -114,11 +114,17 @@
 
 @media screen and (max-width: 1200px) {
   #gameBoard {
+    width: 90%;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
     & .container {
-      width: 50%;
-      justify-content: center;
+      width: auto;
+      & .header {
+        margin-top: 15px;
+      }
+      & .shipyard {
+        margin-bottom: 50px;
+      }
     }
   }
 }
